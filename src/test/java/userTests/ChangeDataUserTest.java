@@ -33,7 +33,7 @@ public class ChangeDataUserTest {
     @Test
     @DisplayName("Изменение имени пользователя с авторизацией.")
     @Description("Изменение имени пользователя с авторизацией. Проверка успешного ответа сервера.")
-    public void changeUserData() {
+    public void changeUserDataTest() {
         userClient.createUser(ClientCredentials.from(user));
         ValidatableResponse responseLogin = userClient.loginUser(ClientCredentials.from(user));
         accessToken = responseLogin.extract().path("accessToken");
@@ -45,7 +45,7 @@ public class ChangeDataUserTest {
     @Test
     @DisplayName("Изменение данных пользователя без авторизации")
     @Description("Изменение данных пользователя без авторизации. Проверка неуспешного ответа от сервера.")
-    public void changeUserDataWithoutLogin() {
+    public void changeUserDataWithoutLoginTest() {
         ValidatableResponse responseCreate = userClient.createUser(ClientCredentials.from(user));
         accessToken = responseCreate.extract().path("accessToken");
         ValidatableResponse responseUpdateUser = userClient.changeUser("", ClientCredentials.from(userUpdate));
@@ -56,7 +56,7 @@ public class ChangeDataUserTest {
     @Test
     @DisplayName("Изменение данных пользователя с существующим email")
     @Description("Изменение данных пользователя с существующим email. Проверка неуспешного ответа от сервера.")
-    public void changeUserDataExistEmail() {
+    public void changeUserDataExistEmailTest() {
         ValidatableResponse responseCreate = userClient.createUser(ClientCredentials.from(user));
         ValidatableResponse responseCreateSecondUser = userClient.createUser(ClientCredentials.from(userSecond));
         accessToken = responseCreate.extract().path("accessToken");
