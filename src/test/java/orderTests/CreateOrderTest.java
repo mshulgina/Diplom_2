@@ -13,7 +13,6 @@ import org.junit.Test;
 import user.User;
 import user.UserClient;
 import user.UserInfo;
-
 import static org.apache.http.HttpStatus.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -46,7 +45,7 @@ public class CreateOrderTest {
         userClient.createUser(ClientCredentials.from(user));
         ValidatableResponse responseLogin = userClient.loginUser(ClientCredentials.from(user));
         accessToken = responseLogin.extract().path("accessToken");
-        ValidatableResponse responseOrderCreate = orderClient.createOrderStep(ingredients, accessToken);
+        ValidatableResponse responseOrderCreate = orderClient.createOrder(ingredients, accessToken);
         assertEquals(SC_OK, responseOrderCreate.extract().statusCode());
         assertTrue(responseOrderCreate.extract().path("success"));
     }
@@ -57,7 +56,7 @@ public class CreateOrderTest {
     public void createOrderWithoutAuthTest() {
         ValidatableResponse responseUserCreate = userClient.createUser(ClientCredentials.from(user));
         accessToken = responseUserCreate.extract().path("accessToken");
-        ValidatableResponse responseOrderCreate = orderClient.createOrderWithoutAuthorizationStep(ingredients);
+        ValidatableResponse responseOrderCreate = orderClient.createOrderWithoutAuthorization(ingredients);
         assertEquals(SC_OK, responseOrderCreate.extract().statusCode());
         assertTrue(responseOrderCreate.extract().path("success"));
     }
@@ -68,7 +67,7 @@ public class CreateOrderTest {
     public void createOrderWithoutIngredientsTest() {
         ValidatableResponse responseUserCreate = userClient.createUser(ClientCredentials.from(user));
         accessToken = responseUserCreate.extract().path("accessToken");
-        ValidatableResponse responseOrderCreate = orderClient.createOrderWithoutAuthorizationStep(ingredientsEmpty);
+        ValidatableResponse responseOrderCreate = orderClient.createOrderWithoutAuthorization(ingredientsEmpty);
         assertEquals(SC_BAD_REQUEST, responseOrderCreate.extract().statusCode());
         assertEquals("Ingredient ids must be provided", responseOrderCreate.extract().path("message"));
     }
@@ -79,7 +78,7 @@ public class CreateOrderTest {
     public void createOrderWithIncorrectHashTest() {
         ValidatableResponse responseUserCreate = userClient.createUser(ClientCredentials.from(user));
         accessToken = responseUserCreate.extract().path("accessToken");
-        ValidatableResponse responseOrderCreate = orderClient.createOrderWithoutAuthorizationStep(ingredientsIncorrect);
+        ValidatableResponse responseOrderCreate = orderClient.createOrderWithoutAuthorization(ingredientsIncorrect);
         assertEquals(SC_INTERNAL_SERVER_ERROR, responseOrderCreate.extract().statusCode());
     }
 

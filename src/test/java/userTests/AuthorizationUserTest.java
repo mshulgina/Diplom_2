@@ -54,7 +54,7 @@ public class AuthorizationUserTest {
 
     @Test
     @DisplayName("Авторизация с пустым полем пароля")
-    @Description("ААвторизация с пустым полем пароля. Проверка неуспешного ответа сервера.")
+    @Description("Авторизация с пустым полем пароля. Проверка неуспешного ответа сервера.")
     public void authUserWithEmptyPasswordTest() {
         ValidatableResponse responseCreate = userClient.createUser(ClientCredentials.from(user));
         ValidatableResponse responseLogin = userClient.loginUser(ClientCredentials.fromOnlyEmail(user));

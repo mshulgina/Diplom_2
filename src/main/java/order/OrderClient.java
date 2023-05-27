@@ -11,7 +11,7 @@ public class OrderClient extends ClientSettings {
     private static final String PATH_GET_ORDERS = "/api/orders";
 
     @Step("Создать заказ с авторизацией")
-    public ValidatableResponse createOrderStep(Ingredients ingredients, String accessToken) {
+    public ValidatableResponse createOrder(Ingredients ingredients, String accessToken) {
         return given()
                 .header("Authorization", accessToken)
                 .header("Accept", "*/*")
@@ -23,7 +23,7 @@ public class OrderClient extends ClientSettings {
     }
 
     @Step("Создать заказ без авторизации")
-    public ValidatableResponse createOrderWithoutAuthorizationStep(Ingredients ingredients) {
+    public ValidatableResponse createOrderWithoutAuthorization(Ingredients ingredients) {
         return given()
                 .spec(getSpec())
                 .body(ingredients)
@@ -33,7 +33,7 @@ public class OrderClient extends ClientSettings {
     }
 
     @Step("Получить заказ конкретного пользователя с авторизацией")
-    public ValidatableResponse getOrdersForUserStep(String accessToken) {
+    public ValidatableResponse getOrdersForUser(String accessToken) {
         if (accessToken != null) {
             return given()
                     .header("Authorization", accessToken)

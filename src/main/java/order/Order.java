@@ -3,7 +3,7 @@ package order;
 public class Order {
 
     public static Ingredients getIngredients() {
-        return new Ingredients(new String[]{"Ингредиент1", "Ингредиент2"});
+        return new Ingredients(new String[]{"61c0c5a71d1f82001bdaaa6c", "61c0c5a71d1f82001bdaaa72"});
     }
 
     public static Ingredients getIngredientsEmpty() {
@@ -11,6 +11,6 @@ public class Order {
     }
 
     public static Ingredients getIngredientsIncorrect() {
-        return new Ingredients(new String[]{"Неверный ингредиент1", "Неверный ингредиент2"});
+        return new Ingredients(new String[]{"12gfs5323", "45533gre26"});
     }
 }

@@ -43,8 +43,8 @@ public class GetOrdersWithUserTest {
         userClient.createUser(ClientCredentials.from(user));
         ValidatableResponse responseLogin = userClient.loginUser(ClientCredentials.from(user));
         accessToken = responseLogin.extract().path("accessToken");
-        orderClient.createOrderStep(ingredients, accessToken);
-        ValidatableResponse responseGetOrders = orderClient.getOrdersForUserStep(accessToken);
+        orderClient.createOrder(ingredients, accessToken);
+        ValidatableResponse responseGetOrders = orderClient.getOrdersForUser(accessToken);
         ArrayList<Object> orders = responseGetOrders.extract().path("orders");
         assertEquals(SC_OK, responseGetOrders.extract().statusCode());
         assertTrue(responseGetOrders.extract().path("success"));
@@ -58,8 +58,8 @@ public class GetOrdersWithUserTest {
         userClient.createUser(ClientCredentials.from(user));
         ValidatableResponse responseLogin = userClient.loginUser(ClientCredentials.from(user));
         accessToken = responseLogin.extract().path("accessToken");
-        orderClient.createOrderStep(ingredients, accessToken);
-        ValidatableResponse responseGetOrders = orderClient.getOrdersForUserStep("");
+        orderClient.createOrder(ingredients, accessToken);
+        ValidatableResponse responseGetOrders = orderClient.getOrdersForUser("");
         assertEquals(SC_UNAUTHORIZED, responseGetOrders.extract().statusCode());
         assertFalse(responseGetOrders.extract().path("success"));
         assertEquals("You should be authorised", responseGetOrders.extract().path("message"));
