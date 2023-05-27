@@ -70,7 +70,7 @@ public class CreateOrderTest {
         accessToken = responseUserCreate.extract().path("accessToken");
         ValidatableResponse responseOrderCreate = orderClient.createOrderWithoutAuthorizationStep(ingredientsEmpty);
         assertEquals(SC_BAD_REQUEST, responseOrderCreate.extract().statusCode());
-        assertEquals("Ингредиенты должны быть добавлены", responseOrderCreate.extract().path("message"));
+        assertEquals("Ingredient ids must be provided", responseOrderCreate.extract().path("message"));
     }
 
     @Test
