@@ -2,6 +2,8 @@
 
 Учебный проект по автотестированию API для приложения по заказу бургеров Stellar Burgers.
 
+Версия Java 11
+
 ## Документация
 
 [Ссылка](https://code.s3.yandex.net/qa-automation-engineer/java/cheatsheets/paid-track/diplom/api-documentation.pdf) на документацию проекта.
